@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management</title>
+    <style>
+        /* CSS styles for the table and buttons */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #d1def2;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            
+            background-color: #FCAFF4;
+            color: #2C0B28;
+            padding: 10px;
+            z-index: 999;
+        }
+        .add-btn {
+            margin-bottom: 10px;
+        }
+
+        .add-btn {
+            background-color: #DD46CD;
+            
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .add-btn a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .add-btn:hover {
+           
+            background-color: #41b0cc;
+        }
+
+        .delete-btn{
+            padding: 4px 8px;
+            background-color: #bb1a32;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .delete-btn a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .update-btn {
+            padding: 4px 16px;
+            background-color: #20b451;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .update-btn a {
+            color: white;
+            text-decoration: none;
+            
+        }
+        .search-bar {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+            align-items: center;
+            border-radius: 4px;
+        }
+
+        .h1 {
+            display: inline;
+            }
+        .search-bar input[type="text"],
+        .search-bar input[type="submit"] {
+            margin-left: 10px;
+            border-radius: 4px;
+           
+        }
+
+        .search-btn {
+            padding: 4px 8px;
+            background-color: #DD46CD;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .image {
+            max-width: 300px;
+            margin-bottom: 10px;
+            max-height: 300px; /* Adjust the height as needed */
+        }
+
+        
+
+
+
+    </style>
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+
+    <body>
+        <div class="header">
+            <h1><center>Library Management</center></h1>
+            <div class="search-bar">
+                <form action="{% url 'book_search' %}" method="GET">
+                    <input type="text" name="q" placeholder="Search" value="{{ query }}">
+                    <button class = "search-btn "type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+
+
+
+        <br><br><br><br>
+        <div class="container">
+            <br>
+            <div class="image-container">
+                <img src="https://i.pinimg.com/564x/ac/ed/84/aced845e25f454ef2df656ffedd84805.jpg" alt="Image" class="image">
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="add-btn"><a href="{% url 'book_create' %}">Add new book</a></button>
+                </div>
+
+              
+                </div>
+            
+     <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for book in books %}
+            <tr>
+              <td>{{ book.title }}</td>
+              <td>{{ book.author }}</td>
+              <td>{{ book.genre }}</td>
+              <td>{{ book.price }}</td>
+              <td>{{ book.quantity }}</td>
+              <td>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="update-btn"><a href="{% url 'book_update' book.pk %}">Edit</a></button>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button class="delete-btn"><a href="{% url 'book_delete' book.pk %}">Delete</a></button>
+                        </div>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+</body>
+</html>
+
+    
+
+
+

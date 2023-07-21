@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Book Record</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #cddefd;
+            padding: 22px;
+        }
+
+        h1 {
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #ffffff;
+            border-radius: 6px;
+            padding: 20px;
+            width: 400px;
+            margin: 0 auto;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .create-btn {
+            padding: 8px 18px;
+            background-color: #0bb2d4;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .create-btn a {
+            color: white;
+            text-decoration: none; 
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .image {
+            max-width: 200px;
+            margin-bottom: 10px;
+            max-height: 200px; /* Adjust the height as needed */
+        }
+
+    </style>
+</head>
+
+
+
+
+<form action="{% url 'book_create' %}" method="POST">
+    {% csrf_token %}
+
+    <h1><center>Add Book Details</center></h1>
+    <div class="image-container">
+        <img src="https://i.pinimg.com/564x/ef/e0/b2/efe0b2d61f37fb4cd0a02edfa79795f5.jpg" alt="Book Image" class="image">
+    </div>
+
+    <label for="title">Title:</label>
+    <input type="text" name="title" placeholder="Title" required>
+
+    <label for="author">Author:</label>
+    <input type="text" name="author" placeholder="Author" required>
+
+    <label for="genre">Genre:</label>
+    <input type="text" name="genre" placeholder="Genre" required>
+
+    <label for="price">Price:</label>
+    <input type="number" step="any" name="price" placeholder="Price" required>
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" step="any" name="quantity" placeholder="Quantity" required>
+    <center><button class = "create-btn" type="submit">Add Book</button></center>
+</form>
